@@ -6,6 +6,7 @@ const signup = async (req, res) => {
   try {
     const { fullName, username, password, confirmedPassword, gender } =
       req.body;
+      console.log()
     if (password !== confirmedPassword) {
       return res.status(400).json({ error: "Passwords don't match" });
     }
@@ -57,7 +58,7 @@ const login = async (req, res) => {
     );
 
     if (!user || !isPasswordCorrect) {
-      res.status(400).json({ error: "Invalid username or password" });
+      return res.status(400).json({ error: "Invalid username or password" });
     }
 
     generateTokenAndSetCookie(user._id, res);
